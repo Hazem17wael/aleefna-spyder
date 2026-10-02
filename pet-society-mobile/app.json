@@ -1,0 +1,106 @@
+{
+  "expo": {
+    "name": "Aleefna",
+    "slug": "mobile",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "aleefna",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF6F2"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "usesAppleSignIn": true,
+      "buildNumber": "21",
+      "bundleIdentifier": "com.aleefna.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Aleefna needs camera access so you can take pet photos and send photos in chat.",
+        "NSPhotoLibraryUsageDescription": "Aleefna needs photo access so you can upload pet photos and send photos in chat.",
+        "NSLocationWhenInUseUsageDescription": "Aleefna uses your location to show nearby pets and share your location in chat when you choose.",
+        "NSUserNotificationsUsageDescription": "Aleefna sends notifications for matches, messages, and important pet updates.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.aleefna.app",
+      "versionCode": 4,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#FFF6F2"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.VIBRATE"
+      ],
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-logo.png",
+          "imageWidth": 148,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFF6F2",
+          "dark": {
+            "image": "./assets/images/splash-logo.png",
+            "backgroundColor": "#0F1220"
+          }
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Aleefna uses your location to show nearby pets and share your location in chat when you choose.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "isIosBackgroundLocationEnabled": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Aleefna needs photo access so you can upload pet photos and send photos in chat.",
+          "cameraPermission": "Aleefna needs camera access so you can take pet photos and send photos in chat."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./assets/sounds/dog_bark_cute_sound.wav"
+          ]
+        }
+      ],
+      "expo-secure-store",
+      "expo-apple-authentication",
+      "./plugins/with-ios-modular-headers"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "981c09fb-3d00-4b3f-857d-c0ad937fb8e8"
+      },
+      "router": {}
+    },
+    "owner": "hazem17wael"
+  }
+}

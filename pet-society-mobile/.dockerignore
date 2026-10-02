@@ -1,0 +1,11 @@
+.git
+.expo
+node_modules
+.pnpm-store
+coverage
+dist
+build
+.env*
+*.jks
+*.keystore
+signing-report.txt

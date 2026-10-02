@@ -1,0 +1,58 @@
+{
+  "cli": {
+    "version": ">= 19.0.8",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.aleefna.cloud/api",
+        "EXPO_PUBLIC_REALTIME_ENABLED": "true",
+        "EXPO_PUBLIC_REVERB_HOST": "api.aleefna.cloud",
+        "EXPO_PUBLIC_REVERB_PORT": "443",
+        "EXPO_PUBLIC_REVERB_SCHEME": "https",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "1067721302571-lpen28l373kc901qn7vfu2n521m0e7uc.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME": "com.googleusercontent.apps.1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "1067721302571-ik91e364iu3tsav6a72gfr29n6eqj1fv.apps.googleusercontent.com"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      },
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.aleefna.cloud/api",
+        "EXPO_PUBLIC_REALTIME_ENABLED": "true",
+        "EXPO_PUBLIC_REVERB_HOST": "api.aleefna.cloud",
+        "EXPO_PUBLIC_REVERB_PORT": "443",
+        "EXPO_PUBLIC_REVERB_SCHEME": "https",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "1067721302571-lpen28l373kc901qn7vfu2n521m0e7uc.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME": "com.googleusercontent.apps.1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "1067721302571-ik91e364iu3tsav6a72gfr29n6eqj1fv.apps.googleusercontent.com"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "pnpm": "10.18.3",
+      "env": {
+        "EXPO_PUBLIC_API_BASE_URL": "https://api.aleefna.cloud/api",
+        "EXPO_PUBLIC_REALTIME_ENABLED": "true",
+        "EXPO_PUBLIC_REVERB_HOST": "api.aleefna.cloud",
+        "EXPO_PUBLIC_REVERB_PORT": "443",
+        "EXPO_PUBLIC_REVERB_SCHEME": "https",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "1067721302571-lpen28l373kc901qn7vfu2n521m0e7uc.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_URL_SCHEME": "com.googleusercontent.apps.1067721302571-t68csu6i0j48m19dugdfk3al7mk8c1p6",
+        "EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID": "1067721302571-ik91e364iu3tsav6a72gfr29n6eqj1fv.apps.googleusercontent.com"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

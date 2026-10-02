@@ -1,0 +1,85 @@
+diff --git a/android/src/main/java/com/pusherwebsocketreactnative/PusherWebsocketReactNativeModule.kt b/android/src/main/java/com/pusherwebsocketreactnative/PusherWebsocketReactNativeModule.kt
+index d189998ba420282227d857587f658b066a14030a..bc3a0f8563867f38198127ec1a7c9944b090b744 100644
+--- a/android/src/main/java/com/pusherwebsocketreactnative/PusherWebsocketReactNativeModule.kt
++++ b/android/src/main/java/com/pusherwebsocketreactnative/PusherWebsocketReactNativeModule.kt
+@@ -53,6 +53,9 @@ class PusherWebsocketReactNativeModule(reactContext: ReactApplicationContext) :
+       }
+       val options = PusherOptions()
+       if (arguments.hasKey("cluster")) options.setCluster(arguments.getString("cluster"))
++      if (arguments.hasKey("host")) options.setHost(arguments.getString("host")!!)
++      if (arguments.hasKey("wsPort")) options.setWsPort(arguments.getInt("wsPort"))
++      if (arguments.hasKey("wssPort")) options.setWssPort(arguments.getInt("wssPort"))
+       if (arguments.hasKey("useTLS")) options.isUseTLS =
+         arguments.getBoolean("useTLS")
+       if (arguments.hasKey("activityTimeout")) options.activityTimeout =
+diff --git a/lib/commonjs/index.js b/lib/commonjs/index.js
+index 67397b4ee178dd1c6e208604b21ffb3b6730e755..45d34bf13fba9d21ac7ee147243a764b0d8a983b 100644
+--- a/lib/commonjs/index.js
++++ b/lib/commonjs/index.js
+@@ -196,6 +196,10 @@ class Pusher {
+     return PusherWebsocketReactNative.initialize({
+       apiKey: args.apiKey,
+       cluster: args.cluster,
++      host: args.host,
++      wsPort: args.wsPort,
++      wssPort: args.wssPort,
++      path: args.path,
+       authEndpoint: args.authEndpoint,
+       useTLS: args.useTLS,
+       activityTimeout: args.activityTimeout,
+diff --git a/lib/module/index.js b/lib/module/index.js
+index df648f4643c89dbeb2c3de63faf1259b3844ac5f..ac11d45110ee704ef11ad01185436d037fb00985 100644
+--- a/lib/module/index.js
++++ b/lib/module/index.js
+@@ -187,6 +187,10 @@ export class Pusher {
+     return PusherWebsocketReactNative.initialize({
+       apiKey: args.apiKey,
+       cluster: args.cluster,
++      host: args.host,
++      wsPort: args.wsPort,
++      wssPort: args.wssPort,
++      path: args.path,
+       authEndpoint: args.authEndpoint,
+       useTLS: args.useTLS,
+       activityTimeout: args.activityTimeout,
+diff --git a/lib/typescript/index.d.ts b/lib/typescript/index.d.ts
+index f972394ec9992c26aa6be3078b57966e04131df4..5216019e1b11f591fd905f46d5aab268bcd9f11d 100644
+--- a/lib/typescript/index.d.ts
++++ b/lib/typescript/index.d.ts
+@@ -58,6 +58,10 @@ export declare class Pusher {
+     init(args: {
+         apiKey: string;
+         cluster: string;
++        host?: string;
++        wsPort?: number;
++        wssPort?: number;
++        path?: string;
+         authEndpoint?: string;
+         useTLS?: boolean;
+         activityTimeout?: Number;
+diff --git a/src/index.tsx b/src/index.tsx
+index 37e2f19a696ab69714e9c92e4da0f66f8471b9d2..b975d3b3916c1fa05561d4d6120f27485626fe7c 100644
+--- a/src/index.tsx
++++ b/src/index.tsx
+@@ -146,6 +146,10 @@ export class Pusher {
+   public init(args: {
+     apiKey: string;
+     cluster: string;
++    host?: string;
++    wsPort?: number;
++    wssPort?: number;
++    path?: string;
+     authEndpoint?: string;
+     useTLS?: boolean;
+     activityTimeout?: Number;
+@@ -281,6 +285,10 @@ export class Pusher {
+     return PusherWebsocketReactNative.initialize({
+       apiKey: args.apiKey,
+       cluster: args.cluster,
++      host: args.host,
++      wsPort: args.wsPort,
++      wssPort: args.wssPort,
++      path: args.path,
+       authEndpoint: args.authEndpoint,
+       useTLS: args.useTLS,
+       activityTimeout: args.activityTimeout,

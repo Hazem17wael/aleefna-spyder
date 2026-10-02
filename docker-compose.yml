@@ -1,0 +1,93 @@
+services:
+  landing:
+    build:
+      context: ./Pet-landing
+    container_name: pet-landing
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+    working_dir: /app
+    volumes:
+      - ./Pet-landing:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --hostname 0.0.0.0 --port 3000"
+
+  mobile:
+    build:
+      context: ./pet-society-mobile
+    container_name: pet-society-mobile
+    ports:
+      - "8081:8081"
+    environment:
+      EXPO_PUBLIC_API_BASE_URL: ${EXPO_PUBLIC_API_BASE_URL:-https://api.aleefna.cloud/api}
+      REACT_NATIVE_PACKAGER_HOSTNAME: ${EXPO_PACKAGER_HOST:-localhost}
+      CHOKIDAR_USEPOLLING: "true"
+    working_dir: /app
+    volumes:
+      - ./pet-society-mobile:/app
+      - /app/node_modules
+    command: pnpm start -- --host lan --port 8081
+
+  api:
+    build:
+      context: ./pet-society
+    container_name: pet-society-api
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+      FRONTEND_URL: http://localhost:3000
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: aleefna
+      DB_USERNAME: aleefna
+      DB_PASSWORD: aleefna
+      CACHE_STORE: redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+      SANCTUM_STATEFUL_DOMAINS: localhost,localhost:3000,127.0.0.1,127.0.0.1:3000
+    volumes:
+      - ./pet-society:/var/www/html
+    command: >
+      bash -lc "
+        git config --global --add safe.directory /var/www/html;
+        if [ ! -f .env ]; then cp .env.example .env; fi;
+        composer install --no-interaction --no-progress --prefer-dist --no-scripts || true;
+        php artisan key:generate --force >/dev/null 2>&1 || true;
+        until nc -z mysql 3306; do echo 'Waiting for MySQL...'; sleep 2; done;
+        php artisan migrate --force;
+        php artisan serve --host 0.0.0.0 --port 8000
+      "
+
+  mysql:
+    image: mysql:8.0
+    container_name: pet-society-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: aleefna
+      MYSQL_USER: aleefna
+      MYSQL_PASSWORD: aleefna
+    ports:
+      - "3306:3306"
+    volumes:
+      - pet_society_db:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: pet-society-redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  pet_society_db:

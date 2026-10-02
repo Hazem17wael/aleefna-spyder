@@ -1,0 +1,17 @@
+**/.git
+**/.next
+**/node_modules
+**/vendor
+**/.env
+**/.env.local
+**/.env.production
+**/.env.development
+**/dist
+**/build
+**/.DS_Store
+**/coverage
+**/storage/logs
+**/storage/*.key
+**/storage/framework/cache/*
+**/storage/framework/sessions/*
+**/storage/framework/views/*
